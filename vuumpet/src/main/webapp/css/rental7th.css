@@ -1,0 +1,88 @@
+.css_light_gray_bg{
+	background-color: #f4f4f4;
+}
+.css_beige_bg{
+	background-color: #eee5cc;
+}
+.css_yellow_bg{
+	background-color: #ffb400;
+}
+.css_gray{
+	background-color: #d8d8d8;
+}
+
+.dark_Gray{
+	color: #404040;
+}
+
+.fa-regular::before{
+	padding-right: 5px;
+}
+.privacy{
+	padding: 10px;
+ 	height: 160px;
+  	overflow-y: auto;
+  	font-size: 13px;
+  	border-radius: 0px;
+}
+.w65px{
+	width: 65px;
+}
+input[type="tel"], input[type="text"]{
+	color: #212121;
+	
+}
+.px10py5{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.notice:before{
+	content: "";
+  	border-left: 5px solid #d8d8d8;
+  	height: 42px;
+  	display: block;
+  	position: absolute;
+  	left: -17px;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
+.bg_img{
+	background-image: url('../img/rental7th/img07.jpg');
+	  background-position: 50% 50%;
+	  background-size: cover;
+	  background-repeat: no-repeat;
+	  position: absolute;
+	  left: 0;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+}
+.css-modal-content{
+	padding-left: 15px;
+	  padding-right: 15px;
+	  padding-top: 55px;
+	  padding-bottom: 55px;
+}
+.css-modal-btn{
+	width: 100%;
+	display: block;
+	cursor: pointer;
+	text-decoration: none;
+}
+.py-10{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}
+.redcircle{
+	display: inline-block;
+	  width: 5px;
+	  height: 5px;
+	  background: #f25656;
+	  border-radius: 50%;
+	  margin-left: 5px;
+	  vertical-align: 2px;
+}

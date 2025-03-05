@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\java\workspace_webjava\vuumpet\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1863901427.index
+2310952426.index
+1990286437.index
+1561259185.index
+3747367686.index

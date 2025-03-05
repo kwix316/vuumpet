@@ -1,0 +1,7 @@
+INDEX VERSION 1.134+C:\java\workspace_webjava\vuumpet\.metadata\.plugins\org.eclipse.jdt.core
+2858735076.index
+960736765.index
+1561259185.index
+1124561105.index
+2626047944.index
+3714311538.index

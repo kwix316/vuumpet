@@ -1,0 +1,172 @@
+.css-img-fluid{
+	max-width:  615px;
+	max-height: 615px;
+}
+.margin-x-8{
+	margin: 0px 8px;
+}
+li a{
+	color: rgba(64,64,64,0.4);
+	vertical-align: baseline;
+}
+li a:hover{
+	color: #404040;
+}
+li a.active{
+	color: #404040;
+}
+li  i{
+	color: rgba(64,64,64,0.4);
+	vertical-align: baseline;
+}
+.select-wrap{
+	position: relative;
+	margin-bottom: 24px;
+}
+.select-wrap .css-dropdown-toggle{
+	display: block;
+	  font-size: 14px;
+	  padding: 8px 24px 8px 12px;
+	  border: 1px solid #ddd;
+	  transition: none;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	  text-align: left;
+	  line-height: 1.42857143;
+	  text-decoration: none;
+	  color: #404040;
+	  position: relative;
+  	font-family: 'ScoreDreamLight' !important;
+    font-weight: normal; 
+}
+.select-wrap .css-dropdown-toggle::after {
+ 	font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  content: "\F229"; /* 유니코드 확인 */
+  font-size: 13px;
+  transform: translateY(-50%);
+  margin-top: 0;
+  color: #404040;
+	font-family: "bootstrap-icons";
+	display: block;
+  position: absolute;
+  text-rendering: auto;
+  right: 14px;
+  top: 50%;
+}
+
+.price{
+		color: #587eda !important;
+	  font-size: 28px;
+	  font-weight: normal !important;
+	  line-height: 1;
+}
+.product-title{
+	border-bottom: 1px solid rgba(64,64,64,0.1);
+	padding-bottom: 50px;
+	margin-bottom: 23px;
+}
+.option-title{
+	font-family: 'ScoreDreamRegular' !important;
+    font-weight: normal; 
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+.select-wrap .css-dropdown-menu {
+  box-shadow: none;
+  border-radius: 0;
+  border-top: 0;
+  border-top-color: currentcolor;
+  width: 100%;
+  padding: 0;
+  min-width: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 9999;
+  display: block;
+  position: relative;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+	  
+}
+.select-wrap .css-dropdown-menu .css-dropdown-item{
+	position: relative;
+  background: #fff;
+  backdrop-filter: blur(4px);
+  border-top:1px solid rgba(0,0,0,.15) ;
+ 	cursor: pointer;
+}
+
+.select-wrap .css-dropdown-menu .css-dropdown-item:first-child{
+	border-top: 0 !important;
+}
+.select-wrap .css-dropdown-menu.border-color{
+	border-top-width: 0px;
+
+}
+.select-wrap .css-dropdown-menu .css-dropdown-item  > a{
+	padding: 9px 12px;
+  	line-height: normal;
+  	display: block;
+}
+.select-wrap .css-dropdown-toggle.open::after {
+  	content: "\F235" !important; /* 유니코드 확인 */
+}
+.buy_btns{
+	display: flex;
+	 justify-content: center;
+	 align-items: center;
+	 gap: 8px;
+}
+.buy_btns button{
+	width: 100%;
+	  font-size: 14px;
+	  letter-spacing: 0;
+	  padding: 12px 0;
+	  color: #404040;
+	border: 1px solid rgba(64,64,64,0.2);
+	background: rgba(255,255,255,1);
+	  transition: .3s;
+	  font-family: 'ScoreDreamRegular' !important;
+    font-weight: normal; 
+    font-size: 14px;
+	  
+}
+
+.buy{
+	border-width: 0px;
+ 	color: #fff  !important;
+ 	background: #6a6a6a  !important;
+ 	border-width: 0px;
+ 	transition: .3s;
+}
+
+.buy:hover{
+	background: rgba(80,80,80,1)  !important;
+	border-color: rgba(80,80,80,1)  !important;
+}
+.buy_btns button:hover{
+	border-color: #404040;
+}
+
+.image-style-align-center{
+	text-align: center;
+}
+.image-style-align-left{
+	text-align:left;
+}
+.image-style-align-right{
+	text-align: right;
+}
+.absolute-top-30px{
+	position: absolute;
+    top: -30px;
+}

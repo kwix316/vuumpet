@@ -1,0 +1,52 @@
+.max-width-586{
+	max-width: 586px;
+}
+.redcircle{
+	display: inline-block;
+	  width: 5px;
+	  height: 5px;
+	  background: #f25656;
+	  border-radius: 50%;
+	  margin-left: 5px;
+	  vertical-align: 2px;
+}
+.input_trick{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+#join_addr_container {
+    z-index: 100;
+ 	margin: 0px !important;
+  	position: relative;
+  	/* top: -37px !important; */
+  	border:1px solid !important;
+  	
+}
+.h337 {
+    height: 337px !important;
+}
+input{
+	font-family: 'ScoreDreamLight' !important;
+    font-weight: 300 !important; 
+    font-size: 13px !important;
+}
+.css-modal-content{
+	padding-left: 15px;
+	  padding-right: 15px;
+	  padding-top: 55px;
+	  padding-bottom: 55px;
+}
+.css-modal-btn{
+	width: 100%;
+	display: block;
+	cursor: pointer;
+	text-decoration: none;
+}
+.py-10{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}

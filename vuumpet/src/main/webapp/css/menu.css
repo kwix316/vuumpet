@@ -1,0 +1,81 @@
+
+@media (max-width: 991px){
+	.logo-center{
+		position: absolute !important;
+  		left: calc(50% - 159.5px) !important;
+  		display: inline-block;
+  		padding: 0px;
+	}
+}
+header{
+	height: 70px;
+}
+nav{
+	height: 70px;
+}
+.css_nav_color_t{
+    background-color: rgba(255, 255, 255, 0.2);
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+.css_nav_color{
+    background-color: rgba(255, 255, 255, 1);
+    transition-property: background-color;
+    transition-duration: 0.3s;      
+    transition-timing-function: ease-out;
+}
+@media (min-width: 938px) {
+  .navbar-expand-css {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-css .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-css .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-css .navbar-nav .nav-link {
+    padding-right: var(--bs-navbar-nav-link-padding-x);
+    padding-left: var(--bs-navbar-nav-link-padding-x);
+  }
+  .navbar-expand-css .navbar-nav-scroll {
+    overflow: visible;
+  }
+  .navbar-expand-css .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  .navbar-expand-css .navbar-toggler {
+    display: none;
+  }
+  .navbar-expand-css .offcanvas {
+    position: static;
+    z-index: auto;
+    flex-grow: 1;
+    width: auto !important;
+    height: auto !important;
+    visibility: visible !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    transform: none !important;
+    transition: none;
+  }
+  .navbar-expand-css .offcanvas .offcanvas-header {
+    display: none;
+  }
+  .navbar-expand-css .offcanvas .offcanvas-body {
+    display: flex;
+    flex-grow: 0;
+    padding: 0;
+    overflow-y: visible;
+  }
+}
+.button-left{
+	position: absolute;
+  	left: 0;
+}
+.logo-bg{
+	background: url(./img/logo.png) center/cover; 
+}

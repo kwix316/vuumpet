@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'ScoreDreamExLight';
+    font-weight  : 200;
+    src: url(../fonts/SCDream2.otf);
+}
+@font-face {
+    font-family: 'ScoreDreamLight';
+    font-weight  : 300;
+    src: url(../fonts/SCDream3.otf);
+}
+@font-face {
+    font-family: 'ScoreDreamRegular';
+    font-weight  : 400;
+    src: url(../fonts/SCDream4.otf);
+}
+@font-face {
+    font-family: 'ScoreDreamMedium';
+    font-weight  : 500;
+    src: url(../fonts/SCDream5.otf);
+}
+@font-face {
+    font-family: 'ScoreDreamBold';
+    font-weight  : 600;
+    src: url(../fonts/SCDream6.otf);
+}
+@font-face {
+    font-family: 'ScoreDreamExBold';
+    font-weight  : 700;
+    src: url(../fonts/SCDream7.otf);
+}
+.ScoreDreamExLight{
+	font-family: 'ScoreDreamExLight' !important;
+    font-weight: 200; 
+}
+.ScoreDreamLight{
+	font-family: 'ScoreDreamLight' !important;
+    font-weight: 300; 
+}
+.ScoreDreamRegular{
+	font-family: 'ScoreDreamRegular' !important;
+    font-weight: 400; 
+}
+.ScoreDreamMedium{
+	font-family: 'ScoreDreamMedium' !important;
+    font-weight: 500; 
+}
+.ScoreDreamBold{
+	font-family: 'ScoreDreamBold' !important;
+    font-weight: 600; 
+}
+.ScoreDreamExBold{
+	font-family: 'ScoreDreamExBold' !important;
+    font-weight: 700; 
+}
+.font-size-12{
+	font-size: 12px;
+}
+.font-size-13{
+	font-size: 13px;
+}
+.font-size-14{
+	font-size: 14px;
+}
+.font-size-17{
+	font-size: 17px;
+}
+.font-size-18{
+	font-size: 18px;
+}
+.font-size-20{
+	font-size: 20px;
+}
+.font-size-24{
+	font-size: 24px;
+}
+
+.dark_Gray{
+	color: #404040;
+}
+.border-color{
+	border-color: #212121 !important;
+}

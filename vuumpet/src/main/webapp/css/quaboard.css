@@ -1,0 +1,17 @@
+.bg{
+    background-image: url(../img/quaboard/img01.jpg);
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.py-140{
+	padding: 140px 0;
+}
+.css-left{
+	left: calc(100vw - 80%);
+}

@@ -1,0 +1,26 @@
+.redcircle{
+	display: inline-block;
+	  width: 5px;
+	  height: 5px;
+	  background: #f25656;
+	  border-radius: 50%;
+	  margin-left: 5px;
+	  vertical-align: 2px;
+}
+.css-modal-content{
+	padding-left: 15px;
+	  padding-right: 15px;
+	  padding-top: 55px;
+	  padding-bottom: 55px;
+}
+.css-modal-btn{
+	width: 100%;
+	display: block;
+	cursor: pointer;
+	text-decoration: none;
+}
+.py-10{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+}
