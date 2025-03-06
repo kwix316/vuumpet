@@ -21,21 +21,17 @@
     <%
         Database db = new Database();
         Map<String, Object> queryResult = db.SelectQuery("vuumpet_product", "");
-        Map<String, Object> queryCategory = db.SelectQuery("vuumpet_category", "");
         boolean success = (boolean) queryResult.get("success");
-        boolean successCategory = (boolean) queryCategory.get("success");
-        if (!success || !successCategory) {
-    %>
-        <script>
-            alert("데이터베이스 오류");
-        </script>
-    <%
-        } else {
-            List<String[]> results = (List<String[]>) queryResult.get("results"); 
-            List<String[]> resultsC = (List<String[]>) queryCategory.get("results"); 
     %>
     <div class="container-fluid">
-    	 <table class="table">
+        <% if (!success) { %>
+            <script>
+                alert("데이터베이스 오류");
+            </script>
+        <% } else { 
+            List<String[]> results = (List<String[]>) queryResult.get("results");
+        %>
+        <table class="table">
             <thead>
                 <tr>
                     <th>제품명</th>
@@ -47,47 +43,36 @@
                 </tr>
             </thead>
             <tbody>
-                <%
-                    for (String[] product : results) {
-                %>
+                <% for (String[] product : results) { %>
                     <tr>
                         <td><%= product[1] %></td>
-                        <td><%= product[3] %></td> 
-                        <td><%= product[4] %></td> 
+                        <td><%= product[3] %></td>
+                        <td><%= product[4] %></td>
                         <%
-                       		for (String[] category : resultsC) {
-                       			if(category[0] == product[6]){
+                            String query = "WHERE id='" + product[7] + "' FETCH FIRST 1 ROWS ONLY";
+                            Map<String, Object> queryCategory = db.SelectQuery("vuumpet_category", query);
+                            boolean successCategory = (boolean) queryCategory.get("success");
+                            String categoryName = "";
+                            if (successCategory) {
+                                List<String[]> resultsC = (List<String[]>) queryCategory.get("results");
+                                if (!resultsC.isEmpty()) {
+                                    categoryName = resultsC.get(0)[1];
+                                }
+                            }
                         %>
-                        <td><%= category[1] %></td> 
-                        <%
-                       		}
-                        %>
-                        <%
-                       		 }
-                        %>
-                        <%
-                        	if(product[6].equals("0")){
-                        %>
-                         	<td>전체</td> 
-                        <%
-                        	}
-                        %>
-                        <td><button class="btn btn-danger"  onclick="editproduct('<%=product[0] %>')">수정</button></td>
-                        <td><button class="btn btn-danger"  onclick="delproduct('<%=product[0] %>')">삭제</button></td>
+                        <td><%= categoryName %></td>
+                        <td><a class="btn btn-primary" href="./editProduct.jsp?idx=<%= product[0] %>">수정</a></td>
+                        <td><button class="btn btn-danger" onclick="delproduct('<%= product[0] %>')">삭제</button></td>
                     </tr>
-                <%
-                    }
-                %>
+                <% } %>
             </tbody>
-             <%
-		        }
-		    %>
         </table>
-      	<div class="d-grid gap-2">
-		  <a class="btn btn-primary" href="addProduct.jsp">추가</a>
-		</div>
+        <% } %>
+        <div class="d-grid gap-2">
+            <a class="btn btn-primary" href="addProduct.jsp">추가</a>
+        </div>
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script>

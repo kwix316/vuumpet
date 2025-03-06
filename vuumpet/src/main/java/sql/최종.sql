@@ -1,10 +1,3 @@
----테이블 삭제-------------
-DROP TABLE vuumpet_category CASCADE CONSTRAINTS;
-DROP TABLE vuumpet_product CASCADE CONSTRAINTS;
-DROP TABLE vuumpet_product_option CASCADE CONSTRAINTS;
-DROP TABLE vuumpet_product_option_value CASCADE CONSTRAINTS;
-drop table vuumpet_users CASCADE CONSTRAINTS;  
-drop table vuumpet_rental CASCADE CONSTRAINTS;  
 -------------------------------------
 commit;
 select * from vuumpet_rental;
@@ -234,6 +227,13 @@ CREATE TABLE vuumpet_rental (
     product VARCHAR2(255) NOT NULL,
     time VARCHAR2(255) NOT NULL
 );
+---테이블 삭제-------------
+DROP TABLE vuumpet_category CASCADE CONSTRAINTS;
+DROP TABLE vuumpet_product CASCADE CONSTRAINTS;
+DROP TABLE vuumpet_product_option CASCADE CONSTRAINTS;
+DROP TABLE vuumpet_product_option_value CASCADE CONSTRAINTS;
+drop table vuumpet_users CASCADE CONSTRAINTS;  
+drop table vuumpet_rental CASCADE CONSTRAINTS;  
 --- 트리거 생성 ---
 GRANT CREATE TRIGGER TO C##dbexam;
 CREATE OR REPLACE TRIGGER trg_vuumpet_category
@@ -283,3 +283,4 @@ BEGIN
     :NEW.id := seq_vuumpet_rental.NEXTVAL;
 END;
 /
+
