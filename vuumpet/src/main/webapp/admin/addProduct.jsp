@@ -164,7 +164,7 @@
 			} = window.CKEDITOR;
 	
 			const LICENSE_KEY =
-				'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NzE4MDQ3OTksImp0aSI6Ijg2ZTkxODdiLWRlM2ItNGEzNS1iMGQ5LTJmMDlkMzUxMmIwZCIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIl0sInZjIjoiOTA4ZjJjNmYifQ.k3XtvT1n2ubIn2jpJnXav9aePOLN8V_oD4LRVpn-GuzsANbI9qzg44pNQGpDroOS-GnBLLmuZ5K-Au23JDp-Xg';
+				'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NzE4MDQ3OTksImp0aSI6ImE0NWJkOTJmLWFkYmMtNGZmYi1hMGMwLTlhN2FlZDM2OWU5OSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiXSwiZmVhdHVyZXMiOlsiRFJVUCJdLCJ2YyI6IjU5ZGQ4MDgzIn0.2fAvqDr0JM2VRKgpkISywPAleIVzc06HBCoUEFUG_85pWmyCy1eycwMlr-GF-synGYEqjvCYCPWw4gcVWRff6A';
 	
 			const editorConfig = {
 				toolbar: {
@@ -248,6 +248,9 @@
 					options: [10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
 					supportAllValues: true
 				},
+			 	alignment: {
+			 		options: ['left', 'center', 'right', 'justify']
+		        },
 				image: {
 					toolbar: [
 						'toggleImageCaption',
