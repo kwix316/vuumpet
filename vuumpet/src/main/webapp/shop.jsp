@@ -1,3 +1,8 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.util.Map"%>
+<%@page import="sql.Database"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!doctype html>
@@ -42,47 +47,50 @@
 	    		</div>
 	    	</div>
     		<div class="row">
+    			<%
+				        Database db = new Database();
+				        String query = "WHERE category_name='" + "신제품 드라이룸" + "' FETCH FIRST 1 ROWS ONLY";
+				        Map<String, Object> categoryQueryResult = db.SelectQuery("vuumpet_category", query);
+				        boolean success = (boolean) categoryQueryResult.get("success");
+				        if (success) {	
+				            List<String[]> categoryInfo = (List)categoryQueryResult.get("results");
+				            NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+				            formatter.setMinimumFractionDigits(0);
+				            formatter.setMaximumFractionDigits(0);
+				         
+				           	for (String[] category : categoryInfo) {
+				           	   	String categoryId = category[0];
+				           		query = "WHERE category_id='" + categoryId + "'";
+						        Map<String, Object> productQueryResult = db.SelectQuery("vuumpet_product", query);
+						        success = (boolean) productQueryResult.get("success");
+						        if (success) {	
+						        	List<String[]> prodcutInfo = (List)productQueryResult.get("results");
+						        	for (String[] product : prodcutInfo) {
+						        		String productNum = product[0];
+						        		String prodcutName = product[1];
+						        		String prodcutImg = product[2];
+						        		String prodcutInfoText = product[4];
+						        		String prodcutPrice = formatter.format(Integer.parseInt(product[3])) + "원";
+				           	   
+				%>
 	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/7thdryroom/img02.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14 ">붐펫드라이룸 단델리온</p>
-	    				<p class="ScoreDreamLight font-size-14 mb-0">890,000원</p>
-	    				<p class="ScoreDreamLight font-size-13">10kg 내외 중형견  / 소형견 두마리 동시 사용 가능</p>
-	    			</div>
+	    			<a href="./product_detail.jsp?idx=<%=productNum %>" class="d-block text-decoration-none dark_Gray">
+	    				<div>
+		    				<img src="<%=prodcutImg %>" alt="" class="img-fluid" />
+		    			</div>
+		    			<div class="text-center text-lg-start">
+		    				<p class="ScoreDreamRegular my-1 font-size-14 "><%=prodcutName %></p>
+		    				<p class="ScoreDreamLight font-size-14 mb-0"><%=prodcutPrice%></p>
+		    				<%=prodcutInfoText%>
+		    			</div>
+	    			</a>
 	    		</div>
-	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/7thdryroom/img03.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14">붐펫드라이룸 단델리온 듀얼</p>
-	    				<p class="ScoreDreamLight font-size-14 mb-0">1,490,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 mb-0">최대 25kg / 다둥이 소형,중형견</p>
-						<p class="ScoreDreamLight font-size-13">or 중대형견</p>
-	    			</div>
-	    		</div>
-	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/7thdryroom/img04.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14">붐펫드라이룸 로투스</p>
-	    				<p class="ScoreDreamLight font-size-14 mb-0">1,190,000원</p>
-	    				<p class="ScoreDreamLight font-size-13">10kg이상 중형견 / 20kg 내외 중대형견</p>
-	    			</div>
-	    		</div>
-	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/7thdryroom/img05.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14">붐펫드라이룸 로투스 듀얼</p>
-	    				<p class="ScoreDreamLight font-size-14 mb-0">1,990,000원</p>
-	    				<p class="ScoreDreamLight font-size-13">중형견 다둥이 가족 / 45kg 내외 대형견 </p>
-	    			</div>
-	    		</div>
+	    		<%
+					        	}
+					        }
+			           	}
+			        }
+    			%>
 	    	</div>
     	</section>
 		<div class="container-fluid position-relative px-0 css-height">
@@ -107,18 +115,49 @@
 	    		</div>
 	    	</div>
     		<div class="row">
+    			<%
+				       	query = "WHERE category_name='" + "큐브드라이어&켄넬" + "' FETCH FIRST 1 ROWS ONLY";
+				        categoryQueryResult = db.SelectQuery("vuumpet_category", query);
+				        success = (boolean) categoryQueryResult.get("success");
+				        if (success) {	
+				            List<String[]> categoryInfo = (List)categoryQueryResult.get("results");
+				            NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+				            formatter.setMinimumFractionDigits(0);
+				            formatter.setMaximumFractionDigits(0);
+				         
+				           	for (String[] category : categoryInfo) {
+				           	   	String categoryId = category[0];
+				           		query = "WHERE category_id='" + categoryId + "'";
+						        Map<String, Object> productQueryResult = db.SelectQuery("vuumpet_product", query);
+						        success = (boolean) productQueryResult.get("success");
+						        if (success) {	
+						        	List<String[]> prodcutInfo = (List)productQueryResult.get("results");
+						        	for (String[] product : prodcutInfo) {
+						        		String productNum = product[0];
+						        		String prodcutName = product[1];
+						        		String prodcutImg = product[2];
+						        		String prodcutInfoText = product[4];
+						        		String prodcutPrice = formatter.format(Integer.parseInt(product[3])) + "원";
+				           	   
+				%>
 	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/shop/img03.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14 ">붐펫 소프트 캐리어</p>
-	    				<p class="ScoreDreamMedium font-size-20 mb-0 d-inline-block">79,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 mb-0 d-inline-block discount-font-color">139,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color my-0">↓ &nbsp;최대<span style="color: rgb(255, 0, 0);">&nbsp;44<strong>%</strong></span> 할인</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color">4가지 사이즈 (S, M, L, XL)</p>
-	    			</div>
+	    			<a href="./product_detail.jsp?idx=<%=productNum %>" class="d-block text-decoration-none dark_Gray">
+	    				<div>
+		    				<img src="<%=prodcutImg %>" alt="" class="img-fluid" />
+		    			</div>
+		    			<div class="text-center text-lg-start">
+		    				<p class="ScoreDreamRegular my-1 font-size-14 "><%=prodcutName %></p>
+		    				<p class="ScoreDreamLight font-size-14 mb-0"><%=prodcutPrice%></p>
+		    				<%=prodcutInfoText%>
+		    			</div>
+	    			</a>
 	    		</div>
+	    		<%
+					        	}
+					        }
+			           	}
+			        }
+    			%>
 	    	</div>
     	</section>
     	<div class="container-fluid position-relative px-0 css-height">
@@ -143,54 +182,49 @@
 	    		</div>
 	    	</div>
     		<div class="row">
+    			<%
+				       	query = "WHERE category_name='" + "케어&기타소모품" + "' FETCH FIRST 1 ROWS ONLY";
+				        categoryQueryResult = db.SelectQuery("vuumpet_category", query);
+				        success = (boolean) categoryQueryResult.get("success");
+				        if (success) {	
+				            List<String[]> categoryInfo = (List)categoryQueryResult.get("results");
+				            NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+				            formatter.setMinimumFractionDigits(0);
+				            formatter.setMaximumFractionDigits(0);
+				         
+				           	for (String[] category : categoryInfo) {
+				           	   	String categoryId = category[0];
+				           		query = "WHERE category_id='" + categoryId + "'";
+						        Map<String, Object> productQueryResult = db.SelectQuery("vuumpet_product", query);
+						        success = (boolean) productQueryResult.get("success");
+						        if (success) {	
+						        	List<String[]> prodcutInfo = (List)productQueryResult.get("results");
+						        	for (String[] product : prodcutInfo) {
+						        		String productNum = product[0];
+						        		String prodcutName = product[1];
+						        		String prodcutImg = product[2];
+						        		String prodcutInfoText = product[4];
+						        		String prodcutPrice = formatter.format(Integer.parseInt(product[3])) + "원";
+				           	   
+				%>
 	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/index/img11.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14 ">붐펫 아로마케어 패키지</p>
-	    				<p class="ScoreDreamMedium font-size-20 mb-0 d-inline-block">79,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 mb-0 d-inline-block discount-font-color">139,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color my-0">↓ &nbsp;최대<span style="color: rgb(255, 0, 0);">&nbsp;44<strong>%</strong></span> 할인</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color">4가지 사이즈 (S, M, L, XL)</p>
-	    			</div>
+	    			<a href="./product_detail.jsp?idx=<%=productNum %>" class="d-block text-decoration-none dark_Gray">
+	    				<div>
+		    				<img src="<%=prodcutImg %>" alt="" class="img-fluid" />
+		    			</div>
+		    			<div class="text-center text-lg-start">
+		    				<p class="ScoreDreamRegular my-1 font-size-14 "><%=prodcutName %></p>
+		    				<p class="ScoreDreamLight font-size-14 mb-0"><%=prodcutPrice%></p>
+		    				<%=prodcutInfoText%>
+		    			</div>
+	    			</a>
 	    		</div>
-	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/index/img11.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14 ">붐펫 아로마케어 패키지</p>
-	    				<p class="ScoreDreamMedium font-size-20 mb-0 d-inline-block">79,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 mb-0 d-inline-block discount-font-color">139,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color my-0">↓ &nbsp;최대<span style="color: rgb(255, 0, 0);">&nbsp;44<strong>%</strong></span> 할인</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color">4가지 사이즈 (S, M, L, XL)</p>
-	    			</div>
-	    		</div>
-	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/index/img11.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14 ">붐펫 아로마케어 패키지</p>
-	    				<p class="ScoreDreamMedium font-size-20 mb-0 d-inline-block">79,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 mb-0 d-inline-block discount-font-color">139,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color my-0">↓ &nbsp;최대<span style="color: rgb(255, 0, 0);">&nbsp;44<strong>%</strong></span> 할인</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color">4가지 사이즈 (S, M, L, XL)</p>
-	    			</div>
-	    		</div>
-	    		<div class="col-12 col-lg-3 p-5 p-lg-1">
-	    			<div>
-	    				<img src="./img/index/img11.jpg" alt="" class="img-fluid" />
-	    			</div>
-	    			<div class="text-center text-lg-start">
-	    				<p class="ScoreDreamRegular my-1 font-size-14 ">붐펫 아로마케어 패키지</p>
-	    				<p class="ScoreDreamMedium font-size-20 mb-0 d-inline-block">79,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 mb-0 d-inline-block discount-font-color">139,000원</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color my-0">↓ &nbsp;최대<span style="color: rgb(255, 0, 0);">&nbsp;44<strong>%</strong></span> 할인</p>
-	    				<p class="ScoreDreamLight font-size-13 font-color">4가지 사이즈 (S, M, L, XL)</p>
-	    			</div>
-	    		</div>
+	    		<%
+					        	}
+					        }
+			           	}
+			        }
+    			%>
 	    	</div>
     	</section>
      	<%@include file="footer.jsp" %>
