@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-fileupload-1.5.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-io-2.18.0.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-text-1.13.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-lang3-3.17.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
