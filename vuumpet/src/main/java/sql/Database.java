@@ -114,4 +114,40 @@ public class Database {
             return false;
         }
     }
+	public boolean UpdateQuery(String table, String[] columns, String[] values, String[] types, String condition) {
+        StringBuilder sql = new StringBuilder("UPDATE " + table + " SET ");
+        for (int i = 0; i < columns.length; i++) {
+            sql.append(columns[i]).append(" = ?, ");
+        }
+        sql.setLength(sql.length() - 2); // 마지막 쉼표 제거
+        sql.append(" WHERE ").append(condition);
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            for (int i = 0; i < values.length; i++) {
+                switch (types[i].toLowerCase()) {
+                    case "string":
+                        pstmt.setString(i + 1, values[i]);
+                        break;
+                    case "int":
+                        pstmt.setInt(i + 1, Integer.parseInt(values[i]));
+                        break;
+                    case "double":
+                        pstmt.setDouble(i + 1, Double.parseDouble(values[i]));
+                        break;
+                    case "date":
+                        pstmt.setDate(i + 1, Date.valueOf(values[i]));
+                        break;
+                    default:
+                        pstmt.setString(i + 1, values[i]);
+                        break;
+                }
+            }
+            System.out.println(sql);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
