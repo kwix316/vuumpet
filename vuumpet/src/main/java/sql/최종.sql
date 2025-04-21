@@ -147,13 +147,13 @@ CREATE TABLE vuumpet_rental (
 -- 제품 문의 게시판 테이블 생성 (수정됨)
 CREATE TABLE vuumpet_qna_board (
     qna_id          NUMBER          CONSTRAINT pk_qna_board PRIMARY KEY,
-    user_id         NUMBER          NOT NULL,
+    user_id         VARCHAR2(255)   NOT NULL,
     qna_title       VARCHAR2(300)   NOT NULL,
     qna_content     CLOB            NOT NULL,
     qna_regdate     DATE            DEFAULT SYSDATE NOT NULL,
     qna_is_secret   NUMBER(1)       DEFAULT 0 NOT NULL CHECK (qna_is_secret IN (0, 1)),
     qna_is_notice   NUMBER(1)       DEFAULT 0 NOT NULL CHECK (qna_is_notice IN (0, 1)), -- ★ 공지사항 여부 컬럼 추가 (0: 일반, 1: 공지)
-    CONSTRAINT fk_qna_user FOREIGN KEY (user_id) REFERENCES vuumpet_users(id)
+    CONSTRAINT fk_qna_user FOREIGN KEY (user_id) REFERENCES vuumpet_users(email)
 );
 
 ---테이블 삭제-------------
