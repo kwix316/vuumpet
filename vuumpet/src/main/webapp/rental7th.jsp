@@ -342,14 +342,25 @@
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	    <script src="./js/nav.js"></script>
-	    <script>
-			$(function() {
-			    get_nav();
-			    $(window).on("resize", function(e) {
-			        get_nav();
-			    });
+	   	<script>
+			$(window).on('load', function() {
+			    let cookieArr = document.cookie.split(";")
+				let msg = ""
+				for (let i = 0; i < cookieArr.length; i++) {
+			        let cookiePair = cookieArr[i].split("=")
+			        if ("msg" === cookiePair[0].trim()) {
+			        	msg = decodeURIComponent(cookiePair[1].replace(/\+/g, " "));
+			          	break;
+			        }
+			    }
+				if (msg) {
+			        $("#msg").text(msg);
+			        document.cookie = "msg=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/vuumpet";
+			        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+			        myModal.show();
+			    }
 			});
-		</script>
+	    </script>
 	    <!-- Modal -->
 		<script>
 			function checkInput() {
@@ -376,23 +387,6 @@
 				}
 				frm.submit()
 			}
-			$(function(){
-				let cookieArr = document.cookie.split(";")
-				let msg = ""
-				for (let i = 0; i < cookieArr.length; i++) {
-			        let cookiePair = cookieArr[i].split("=")
-			        if ("msg" === cookiePair[0].trim()) {
-			        	msg = decodeURIComponent(cookiePair[1].replace(/\+/g, " "));
-			          	break;
-			        }
-			    }
-				if (msg) {
-			        $("#msg").text(msg);
-			        document.cookie = "msg=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/vuumpet";
-			        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
-			        myModal.show();
-			    }
-			})
 		</script>
  	    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	        <div class="modal-dialog modal-dialog-centered justify-content-center">

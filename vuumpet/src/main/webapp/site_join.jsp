@@ -106,13 +106,9 @@
 	    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	    <script src="./js/zipcode_daum.js"></script>
      	<script>
-	      	$(function(){
-		        get_nav()
-	          	$(window).on("resize", function(e){
-	          		get_nav()
-	          		
-		        })
-		        let cookieArr = document.cookie.split(";")
+     	 <script>
+	 		$(window).on('load', function() {
+			    let cookieArr = document.cookie.split(";")
 				let msg = ""
 				for (let i = 0; i < cookieArr.length; i++) {
 			        let cookiePair = cookieArr[i].split("=")
@@ -174,8 +170,8 @@
 					},
 					'height' : '100%'
 				});
-	      	})
-	    	function test() {
+			});
+	 		function test() {
 				const checkall = $("#checkall")
 				if(checkall.prop("checked")){
 					$('input[type="checkbox"]').prop("checked", true);

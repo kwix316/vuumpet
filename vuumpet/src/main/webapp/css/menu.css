@@ -79,3 +79,6 @@ nav{
 .logo-bg{
 	background: url(./img/logo.png) center/cover; 
 }
+.nav-link{
+	white-space: nowrap;
+}
