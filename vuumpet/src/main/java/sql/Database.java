@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -150,4 +151,81 @@ public class Database {
             return false;
         }
     }
+	public Map<String, Object> getQnaList(int currentPage, int postsPerPage) {
+	    Map<String, Object> resultData = new HashMap<>();
+	    List<Map<String, Object>> posts = new ArrayList<>();
+	    int totalPosts = 0;
+
+	    // 전체 게시글 수 조회
+	    String countSql = "SELECT COUNT(*) FROM vuumpet_qna_board";
+	    try (Connection conn = getConnection();
+	         PreparedStatement countPstmt = conn.prepareStatement(countSql);
+	         ResultSet countRs = countPstmt.executeQuery()) {
+	        if (countRs.next()) {
+	            totalPosts = countRs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error counting posts: " + e.getMessage());
+	        e.printStackTrace();
+	        resultData.put("posts", posts); // 비어있는 리스트 반환
+	        resultData.put("totalPosts", 0);
+	        return resultData; // 오류 시 빈 데이터 반환
+	    }
+
+	    // 페이징 계산
+	    int startRow = (currentPage - 1) * postsPerPage + 1;
+	    int endRow = startRow + postsPerPage - 1;
+
+	    // 특정 페이지 게시글 목록 조회 (Oracle 페이징 쿼리 사용)
+	 // JOIN을 통해 사용자 이름 가져오기
+	 // 공지사항(qna_is_notice=1)을 먼저, 그 다음 최신글(qna_id DESC) 순으로 정렬
+	    String listSql = "SELECT qna_id, user_id, qna_title, qna_content, qna_regdate, qna_is_secret, qna_is_notice, user_email " +
+	    	    "FROM ( " +
+	    	    "    SELECT b.qna_id, b.user_id, b.qna_title, b.qna_content, b.qna_regdate, b.qna_is_secret, b.qna_is_notice, " +
+	    	    "           u.email as user_email, " +
+	    	    "           ROWNUM as rnum " +
+	    	    "    FROM ( " +
+	    	    "        SELECT * " +
+	    	    "        FROM vuumpet_qna_board " +
+	    	    "        ORDER BY qna_is_notice DESC, qna_id DESC " +
+	    	    "    ) b JOIN vuumpet_users u ON b.user_id = u.email " + // u.id를 u.email로 변경
+	    	    "    WHERE ROWNUM <= ? " +
+	    	    ") " +
+	    	    "WHERE rnum >= ?";
+
+	    try (Connection conn = getConnection();
+	         PreparedStatement pstmt = conn.prepareStatement(listSql)) {
+
+	        pstmt.setInt(1, endRow);
+	        pstmt.setInt(2, startRow);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            ResultSetMetaData metaData = rs.getMetaData();
+	            int columnCount = metaData.getColumnCount();
+
+	            while (rs.next()) {
+	                Map<String, Object> row = new HashMap<>();
+	                for (int i = 1; i <= columnCount; i++) {
+	                    // Oracle에서는 보통 컬럼명이 대문자로 반환됩니다.
+	                    String columnName = metaData.getColumnName(i).toUpperCase();
+	                    Object value = rs.getObject(i);
+	                    // 날짜 타입 포맷 변경이 필요하면 여기서 처리 가능 (예: Timestamp -> String)
+	                    // if (value instanceof java.sql.Timestamp) {
+	                    //     value = new java.text.SimpleDateFormat("yyyy-MM-dd").format(value);
+	                    // }
+	                    row.put(columnName, value);
+	                }
+	                posts.add(row);
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("Error fetching post list: " + e.getMessage());
+	        e.printStackTrace();
+	        // 오류 발생 시 비어있는 리스트라도 반환하도록 설정
+	    }
+
+	    resultData.put("posts", posts);
+	    resultData.put("totalPosts", totalPosts);
+	    return resultData;
+	}
 }

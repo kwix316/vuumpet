@@ -17,8 +17,8 @@
   			request.setCharacterEncoding("utf-8");
   			//필수 파라미터
   			String policy_agree = request.getParameter("policy_agree");
-  			String privacy_agree = request.getParameter("policy_agree");
-  			String limit_join_agree = request.getParameter("policy_agree");
+  			String privacy_agree = request.getParameter("privacy_agree");
+  			String limit_join_agree = request.getParameter("limit_join_agree");
   			//선택적 파라미터
   			String marketing_sms_agree = request.getParameter("marketing_sms_agree");
 		 	if (policy_agree == null || policy_agree.isEmpty() ||
@@ -71,23 +71,28 @@
 					</div>
 				</div>
 				<div class="row justify-content-center">
-					<div class="max-width-586">
-						<label class="font-size-14 ScoreDreamLight d-block w-100 mt-3 dark_Gray">주소<i class="redcircle"></i></label>
-						<input type="hidden" name="addr_country" value="KR">
-						<div id="kr_addr_form_wrap" class="_addr_form_wrap">
-							<div class="input_form _item _addr">
-								<input type="hidden" id="join_addr_postcode" name="addr_post" value="">
-								<input class="form-control rounded-0 shadow-none" type="text" id="join_addr" name="addr" placeholder="주소" value="" readonly>
-								<div class="alert-block _msg"></div>
-							</div>
-							<div id="join_addr_container" class="w-100" style="display:none;">
-								<div class="_add_list w-100 h337" style="padding: 0 0 0 0;position:relative;"></div>
-							</div>
-							<div class="position-relative">
-								<input class="form-control rounded-0 shadow-none" title="상세주소" type="text" id="join_addr_detail" name="addr_detail" placeholder="상세주소" value="">
-							</div>
-						</div>
-					</div>			
+				    <div class="max-width-586">
+				        <label class="font-size-14 ScoreDreamLight d-block w-100 mt-3 dark_Gray">주소<i class="redcircle"></i></label>
+				        <input type="hidden" name="addr_country" value="KR">
+				        <div id="kr_addr_form_wrap" class="_addr_form_wrap">
+				            <div class="input-group mb-2"> <%-- input-group 사용 --%>
+				                <input class="form-control rounded-0 shadow-none" type="text" id="join_addr_postcode" name="addr_post" placeholder="우편번호" value="" readonly>
+				                <%-- 주소 검색 버튼 추가 --%>
+				                <button class="btn btn-outline-secondary rounded-0" type="button" id="btn_find_address">주소 검색</button>
+				            </div>
+				            <%-- 주소 검색 API가 embed될 영역 (기존과 동일, 필요시 스타일 조정) --%>
+				            <div id="join_addr_container" class="w-100" style="display:none; border: 1px solid #ced4da; margin-bottom: 0.5rem;">
+				                <div class="_add_list w-100 h337" style="position:relative;"></div>
+				            </div>
+				            <div class="input_form _item _addr mb-2">
+				                <input class="form-control rounded-0 shadow-none" type="text" id="join_addr" name="addr" placeholder="주소" value="" readonly>
+				                <div class="alert-block _msg"></div>
+				            </div>
+				            <div class="position-relative">
+				                <input class="form-control rounded-0 shadow-none" title="상세주소" type="text" id="join_addr_detail" name="addr_detail" placeholder="상세주소" value="">
+				            </div>
+				        </div>
+				    </div>
 				</div>
 		
 				<div class="row justify-content-center mt-4 mb-5">
@@ -106,7 +111,6 @@
 	    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	    <script src="./js/zipcode_daum.js"></script>
      	<script>
-     	 <script>
 	 		$(window).on('load', function() {
 			    let cookieArr = document.cookie.split(";")
 				let msg = ""
@@ -124,52 +128,33 @@
 			        myModal.show();
 			    }
 		        var join_addr = new ZIPCODE_DAUM();
-				var address = "";
-				var splitAddress ="";
-				var building = "";
-				var street= "";
-				var city= "";
-				var state= "";
+		        join_addr.init({
+		            'addr_container': $('#join_addr_container'),        // API 표시될 컨테이너
+		            'addr_pop': $('#join_addr_container ._add_list'), // API embed될 요소
+		            'post_code': $('#join_addr_postcode'),        // 우편번호 input
+		            'addr': $('#join_addr'),                    // 주소 input
+		            // 'sub_addr': $('#sub_join_addr'),           // <-- 제거 (HTML에 해당 요소 없음)
+		            'open_button': $('#btn_find_address'),      // <-- 새로 추가한 검색 버튼 타겟
+		            'attachShowEventOnInput': false,            // <-- 주소 input 클릭 시 API 안 뜨도록 설정 (선택 사항)
+		            'hideWhenClickOutside': true,               // <-- 외부 클릭 시 닫기 (유지)
+		            'height': '100%',                           // API 높이
+		            'onComplete': function(data) {              // 주소 선택 완료 시 콜백
+		                console.log(data); // 선택된 주소 데이터 확인용 로그
+		                // 우편번호(zonecode)와 주소(address 또는 roadAddress) 설정
+		                $('#join_addr_postcode').val(data.zonecode || ''); // zonecode 사용
+		                $('#join_addr').val(data.roadAddress || data.jibunAddress || ''); // 도로명 우선, 없으면 지번
 
-				join_addr.init({
-					'addr_container' : $('#join_addr_container'),
-					'addr_pop' : $('#join_addr_container ._add_list'),
-					'post_code' : $('#join_addr_postcode'),
-					'addr' : $('#join_addr'),
-					'sub_addr' : $('#sub_join_addr'),
-					'onShow' : function(){
-						$('#join_addr_container').css({'top' : -38 + 'px'});
-						$('#join_addr_detail').parent().css({'top' : -38 + 'px'});
-					},
-					'onComplete' : function(data){
-						$('#join_addr_detail').focus();
+		                // 상세주소 입력 필드로 포커스 이동
+		                $('#join_addr_detail').focus();
 
-						/*한글 주소일때 내부적으로 영문주소도 저장하기 위해*/
-						address = data.addressEnglish;
-						if(address == 'undefined') address = data.jibunAddressEnglish;
-						splitAddress= address.split(',');
-						if(splitAddress.length > 5){
-							building = splitAddress[0];
-							street = splitAddress[1];
-							city = splitAddress[2];
-							state = splitAddress[3] + " " + splitAddress[4];
-						} else {
-							building = splitAddress[0];
-							street = splitAddress[1];
-							city = splitAddress[2];
-							state = splitAddress[3];
-						}
-						$("input[name='addr_building']").val(building);
-						$("input[name='addr_street']").val(street);
-						$("input[name='addr_city']").val(city);
-						$("input[name='addr_state']").val(state);
-						$("input[name='addr_zipcode']").val(data.zonecode);
-					},
-					'onClose' : function(){
-						$('#join_addr_detail').parent().css({'top' : 0 + 'px'});
-					},
-					'height' : '100%'
-				});
+		                // --- 영문 주소 파싱 및 숨겨진 필드 설정 로직 제거 ---
+		            },
+		            'onClose': function() {                       // 검색창 닫힐 때 콜백
+		                // JS로 스타일 조작하는 부분 제거 (필요 시 CSS로 처리)
+		                console.log('Daum Postcode closed');
+		            }
+		             // 'onShow' 콜백도 제거 (필요 시 CSS로 처리)
+		        });
 			});
 	 		function test() {
 				const checkall = $("#checkall")

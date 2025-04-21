@@ -25,13 +25,19 @@
 		        <hr class="mb-5">
 		        <div class="row">
 		          <div class="col-md-12 col-lg-4 mb-3">
-		           	<img src="./img/index/img02.jpg" class="img-fluid rounded" alt="...">
+		          	<a href="./shop.jsp">
+		          		<img src="./img/index/img02.jpg" class="img-fluid rounded" alt="...">
+		          	</a>
 		          </div>
 		          <div class="col-md-12 col-lg-4 mb-3">
-		           <img src="./img/index/img03.jpg" class="img-fluid rounded" alt="...">
+		            <a href="./shop.jsp">
+		           		<img src="./img/index/img03.jpg" class="img-fluid rounded" alt="...">
+		           </a>
 		          </div>
 		          <div class="col-md-12 col-lg-4">
-		            <img src="./img/index/img04.jpg" class="img-fluid rounded" alt="...">             
+		           <a href="./shop.jsp">
+		            <img src="./img/index/img04.jpg" class="img-fluid rounded" alt="...">
+		            </a>             
 		          </div>
 		        </div>
 	    	</div>
@@ -52,15 +58,18 @@
 		        <h4 class="mb-5 ScoreDreamMedium">봄펫 싱글 드라이룸</h4>
 		       	<div class="d-flex text-center">
 		       		<div class="me-2 mx-auto">
-						<img src="./img/index/img06.jpg" alt=""  width="513px"/>
+		       			<a href="./product_detail.jsp?idx=1">
+							<img src="./img/index/img06.jpg" alt=""  width="513px"/>
+						</a>
 						<div class="row mt-4">
 							<p class="ScoreDreamRegular dark_Gray">단델리온</p>
-							
 							<p class="ScoreDreamLight dark_Gray">10KG 내외 중형견/소형견 2마리 동시 사용</p>
 						</div>
 		       		</div>
 		       		<div class="ms-2 mx-auto">
-		       			<img src="./img/index/img07.jpg" alt=""  width="513px">
+		       			<a href="./product_detail.jsp?idx=2">
+		       				<img src="./img/index/img07.jpg" alt=""  width="513px">
+		       			</a>
 						<div class="row mt-4">
 							<p class="ScoreDreamRegular dark_Gray">로투스</p>
 							<p class="ScoreDreamLight dark_Gray">10KG 이상 중형견/20KG 내외 중대형견</p>
@@ -74,14 +83,18 @@
 		    	<div class="my-5">
 		    		<div class="d-flex text-center">
 			       		<div class="me-2 mx-auto">
-							<img src="./img/index/img08.jpg" alt=""  width="513px"/>
+			       			<a href="./product_detail.jsp?idx=3">
+								<img src="./img/index/img08.jpg" alt=""  width="513px"/>
+							</a>
 							<div class="row mt-4">
 								<p class="ScoreDreamRegular dark_Gray">단델리온 듀얼</p>
 								<p class="ScoreDreamLight dark_Gray">최대 25KG/다둥이 소형, 중형견 OR 중대형견</p>
 							</div>
 			       		</div>
 			       		<div class="ms-2 mx-auto">
-			       			<img src="./img/index/img09.jpg" alt=""  width="513px">
+			       			<a href="./product_detail.jsp?idx=4">
+			       				<img src="./img/index/img09.jpg" alt=""  width="513px">
+		       				</a>
 							<div class="row mt-4 px-0">
 								<p class="ScoreDreamRegular dark_Gray">로투스 듀얼</p>
 								<p class="ScoreDreamLight dark_Gray">45kg 내외 대형견/중형견 다둥이</p>

@@ -59,7 +59,7 @@
      	   	 	}
 	      	}else{
 	      		System.out.println("조건 false");
-	      		String[] columns = {"email", "password", "name", "address", "detailaddress", "phone", "sms"};
+	      		String[] columns = {"email", "password", "name", "address", "detail_address", "phone", "sms_opt_in"};
 	          	String[] types = {"string", "string", "string", "string", "string", "string", "int"}; 
 	         	 	String[] values = new String[] {
 	         	 		email,

@@ -82,3 +82,15 @@ nav{
 .nav-link{
 	white-space: nowrap;
 }
+.gap16{
+	gap: 16px;
+}
+
+@media (min-width: 992px) {
+    .nav-grid {
+        display: grid;
+        grid-template-columns: auto auto; /* 왼쪽 메뉴와 오른쪽 메뉴를 두 열로 배치 */
+        justify-content: space-between; /* 양쪽 끝으로 정렬 */
+        align-items: center;
+    }
+}
